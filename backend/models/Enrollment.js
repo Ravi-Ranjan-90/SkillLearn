@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const progressSchema =
+const enrollmentSchema =
   new mongoose.Schema(
     {
       userId: {
@@ -9,6 +9,8 @@ const progressSchema =
             .ObjectId,
 
         ref: "User",
+
+        required: true,
       },
 
       courseId: {
@@ -17,17 +19,27 @@ const progressSchema =
             .ObjectId,
 
         ref: "Course",
+
+        required: true,
       },
 
-      completedModules: [
-        {
-          type:
-            mongoose.Schema.Types
-              .ObjectId,
+      paymentId: {
+        type: String,
 
-          ref: "Module",
-        },
-      ],
+        required: true,
+      },
+
+      orderId: {
+        type: String,
+
+        required: true,
+      },
+
+      status: {
+        type: String,
+
+        default: "completed",
+      },
     },
     {
       timestamps: true,
@@ -35,6 +47,6 @@ const progressSchema =
   );
 
 module.exports = mongoose.model(
-  "Progress",
-  progressSchema
+  "Enrollment",
+  enrollmentSchema
 );

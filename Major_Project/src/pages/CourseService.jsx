@@ -1,19 +1,20 @@
-const API_URL = "http://localhost:5000/api/courses";
+import API_URL from "../config/api";
+const API_URLL = `${API_URL}/api/courses`;
 
 export const getCourses = async () => {
-  const response = await fetch(API_URL);
+  const response = await fetch(API_URLL);
 
   return response.json();
 };
 
 export const getSingleCourse = async (id) => {
-  const response = await fetch(`${API_URL}/${id}`);
+  const response = await fetch(`${API_URLL}/${id}`);
 
   return response.json();
 };
 
 export const createCourse = async (data) => {
-  const response = await fetch(API_URL, {
+  const response = await fetch(API_URLL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -1,4 +1,5 @@
 import { useEffect,useState } from "react";
+import API_URL from "../config/api";
 
 function AdminManageQuestions(){
 
@@ -6,7 +7,7 @@ function AdminManageQuestions(){
 
  useEffect(()=>{
 
- fetch("http://localhost:5000/api/questions")
+ fetch(`${API_URL}/api/questions`)
  .then(res=>res.json())
  .then(data=>setQuestions(data))
 
@@ -14,7 +15,7 @@ function AdminManageQuestions(){
 
  const deleteQuestion = async(id)=>{
 
- await fetch(`http://localhost:5000/api/admin/question/${id}`,{
+ await fetch(`${API_URL}/api/admin/question/${id}`,{
  method:"DELETE"
  });
 

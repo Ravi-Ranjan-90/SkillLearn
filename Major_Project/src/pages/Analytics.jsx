@@ -1,51 +1,17 @@
 
 
 // import { useEffect, useState } from "react";
-
-// function Analytics(){
-
-//  const [analytics,setAnalytics] = useState(null);
-
-//  useEffect(()=>{
-
-//  const token = localStorage.getItem("token");
-
-//  fetch("http://localhost:5000/api/analytics/user",{
-//    headers:{
-//      authorization:`Bearer ${token}`
-//    }
-//  })
-//  .then(res=>res.json())
-//  .then(data=>setAnalytics(data))
-
-//  },[])
-
-//  if(!analytics) return <div>Loading...</div>
-
-//  return(
-
-//  <div className="p-10">
-
-//  <h1 className="text-2xl font-bold mb-6">
-//  Analytics Dashboard
-//  </h1>
-
-//  <p>Total Questions Attempted: {analytics.total}</p>
-
-//  <p>Correct Answers: {analytics.correct}</p>
-
-//  <p>Accuracy: {analytics.accuracy}%</p>
-
-//  </div>
-
-//  )
-
-// }
-
-// export default Analytics;
-
-// import { useEffect, useState } from "react";
-// import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, BarChart, Bar, ResponsiveContainer } from "recharts";
+// import {
+//  LineChart,
+//  Line,
+//  XAxis,
+//  YAxis,
+//  Tooltip,
+//  CartesianGrid,
+//  BarChart,
+//  Bar,
+//  ResponsiveContainer
+// } from "recharts";
 
 // function Analytics(){
 
@@ -65,7 +31,31 @@
 
 //  },[])
 
-//  if(!analytics) return <div className="p-10">Loading...</div>
+//  if(!analytics) return <div className="p-10">Loading...</div>;
+
+
+
+//  // -------- LEVEL PERFORMANCE DATA --------
+
+//  const levelPerformance = [0,1,2].map(level => {
+
+//  const attempts = analytics.history.filter(a => a.level === level);
+
+//  const avg =
+//  attempts.length
+//  ? Math.round(
+//  attempts.reduce((sum,a)=>sum + a.score,0)/attempts.length
+//  )
+//  : 0;
+
+//  return {
+//  level:`Level ${level}`,
+//  score:avg
+//  };
+
+//  });
+
+
 
 //  return(
 
@@ -74,6 +64,8 @@
 //  <h1 className="text-3xl font-bold mb-8">
 //  Analytics Dashboard
 //  </h1>
+
+
 
 //  {/* SUMMARY CARDS */}
 
@@ -96,6 +88,8 @@
 
 //  </div>
 
+
+
 //  {/* SCORE PROGRESS CHART */}
 
 //  <div className="bg-white p-6 rounded shadow mb-10">
@@ -116,7 +110,12 @@
 
 //  <Tooltip />
 
-//  <Line type="monotone" dataKey="score" stroke="#3b82f6" strokeWidth={3} />
+//  <Line
+//  type="monotone"
+//  dataKey="score"
+//  stroke="#3b82f6"
+//  strokeWidth={3}
+//  />
 
 //  </LineChart>
 
@@ -124,7 +123,9 @@
 
 //  </div>
 
-//  {/* LEVEL PERFORMANCE */}
+
+
+//  {/* LEVEL PERFORMANCE CHART */}
 
 //  <div className="bg-white p-6 rounded shadow mb-10">
 
@@ -134,7 +135,7 @@
 
 //  <ResponsiveContainer width="100%" height={300}>
 
-//  <BarChart data={analytics.history}>
+//  <BarChart data={levelPerformance}>
 
 //  <CartesianGrid strokeDasharray="3 3" />
 
@@ -151,6 +152,8 @@
 //  </ResponsiveContainer>
 
 //  </div>
+
+
 
 //  {/* ATTEMPT HISTORY */}
 
@@ -200,6 +203,7 @@
 
 // export default Analytics;
 
+
 import { useEffect, useState } from "react";
 import {
  LineChart,
@@ -212,6 +216,7 @@ import {
  Bar,
  ResponsiveContainer
 } from "recharts";
+import API_URL from "../config/api";
 
 function Analytics(){
 
@@ -221,7 +226,7 @@ function Analytics(){
 
  const token = localStorage.getItem("token");
 
- fetch("http://localhost:5000/api/analytics/user",{
+ fetch(`${API_URL}/api/analytics/user`,{
    headers:{
      Authorization:`Bearer ${token}`
    }

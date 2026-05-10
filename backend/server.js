@@ -4,6 +4,13 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 
 const connectDB = require("./config/db");
+const courseRoutes = require(
+  "./routes/courseRoutes"
+);
+
+const paymentRoutes = require(
+  "./routes/paymentRoutes"
+);
 
 dotenv.config();
 
@@ -11,7 +18,13 @@ connectDB();
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin:
+      process.env.FRONTEND_URL,
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 app.use("/api/auth", require("./routes/authRoutes"));
@@ -22,7 +35,17 @@ app.use("/api/test", require("./routes/testRoutes"));
 app.use("/api/analytics", require("./routes/analyticsRoutes"));
 app.use("/api/admin", require("./routes/adminRoutes"));
 app.use("/api/ats", require("./routes/atsRoutes"));
-app.use("/api/courses", require("./routes/courseRoutes"));
+// app.use("/api/courses", require("./routes/courseRoutes"));
+
+app.use(
+  "/api/courses",
+  courseRoutes
+);
+
+app.use(
+  "/api/payments",
+  paymentRoutes
+);
 
 
 app.use("/api/coding", require("./routes/codingRoutes"));

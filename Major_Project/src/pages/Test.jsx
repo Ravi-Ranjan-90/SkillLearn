@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import API_URL from "../config/api";
 
 function Test() {
   const { subjectId } = useParams();
@@ -11,7 +12,7 @@ function Test() {
 
   useEffect(() => {
     if (level !== null) {
-      fetch(`http://localhost:5000/api/questions/${subjectId}/${level}`)
+      fetch(`${API_URL}/api/questions/${subjectId}/${level}`)
         .then((res) => res.json())
         // .then((data) => setQuestions(data));
         .then((data) => {
@@ -36,7 +37,7 @@ function Test() {
 
     const token = localStorage.getItem("token");
 
-    const res = await fetch("http://localhost:5000/api/test/submit", {
+    const res = await fetch("${API_URL}/api/test/submit", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

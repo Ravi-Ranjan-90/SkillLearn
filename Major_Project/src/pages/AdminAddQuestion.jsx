@@ -8,7 +8,7 @@ function AdminAddQuestion(){
 
  const addQuestion = async()=>{
 
- await fetch("http://localhost:5000/api/admin/question",{
+ await fetch(`${API_URL}/api/admin/question`,{
 
  method:"POST",
 

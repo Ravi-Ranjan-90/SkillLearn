@@ -14,7 +14,8 @@ import Test from "./pages/Test";
 import Analytics from "./pages/Analytics";
 import Courses from "./pages/Courses";
 import CourseDetails from "./pages/CourseDetail";
-
+import WatchCourse from "./pages/WatchCourse";
+import MyLearning from "./pages/MyLearning";
 import CodingHome from "./pages/CodingHome";
 import CodingQuestions from "./pages/CodingQuestions";
 import CodingPage from "./pages/CodingPage";
@@ -41,6 +42,15 @@ function App() {
           path="/courses/:id"
           element={<CourseDetails />}
         />
+        <Route
+  path="/watch/:courseId"
+  element={<WatchCourse />}
+/>
+
+<Route
+  path="/my-learning"
+  element={<MyLearning />}
+/>
 
       {/* <Route path="/topics/:subjectId" element={<Topics />} />
 

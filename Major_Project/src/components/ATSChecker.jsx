@@ -122,6 +122,7 @@
 import { useState } from "react";
 import ATSResult from "./ATSResult";
 import LoadingSpinner from "./LoadingSpinner";
+import API_URL from "../config/api";
 
 function ATSChecker() {
   const [resume, setResume] = useState(null);
@@ -146,7 +147,7 @@ function ATSChecker() {
       formData.append("jobDescription", jdText);
 
       const response = await fetch(
-        "http://localhost:5000/api/ats/check-ats",
+        `${API_URL}/api/ats/check-ats`,
         {
           method: "POST",
           body: formData,
