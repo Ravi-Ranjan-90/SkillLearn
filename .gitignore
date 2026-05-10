@@ -1,0 +1,5 @@
+backend/node_modules/
+Major_Project/node_modules/
+
+backend/.env
+Major_Project/.env
